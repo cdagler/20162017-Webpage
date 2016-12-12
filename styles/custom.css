@@ -1,0 +1,46 @@
+.navbar{
+  border-color: blue;
+}
+
+.nav.navbar-nav a {
+    color: white;
+    font-weight: bold;
+}
+
+.nav.navbar-nav a:hover {
+    color: #366BE7;
+}
+
+ul#navigation .active{
+    background-color: white;
+}
+
+ul#navigation .active a {
+  color: #1250DF;
+}
+
+.icon-bar {
+    background-color: white;
+}
+
+li.right {
+  float: right;
+}
+
+.container {
+  padding-top: 25px;
+}
+
+.container.my_title {
+  padding-top: 50px;
+}
+
+.my_pic {
+  padding-top: 20px;
+  width: 170px;
+  float: right;
+}
+
+.justify {
+  text-align: justify;
+}
