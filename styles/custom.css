@@ -1,5 +1,5 @@
 .navbar{
-  border-color: blue;
+  border-color: #317EB6;
 }
 
 .nav.navbar-nav a {
@@ -18,7 +18,21 @@ ul#navigation .active{
 ul#navigation .active a {
   color: #1250DF;
 }
-
+/*
+.navbar-nav > li > .dropdown-toggle:focus
+{
+  color: #366BE7;
+}
+*/
+.navbar-nav > li > .dropdown-menu
+{
+  background-color: #317EB6;
+}
+/*
+.dropdown-menu a{
+    color: #366BE7;
+}
+*/
 .icon-bar {
     background-color: white;
 }
@@ -43,4 +57,8 @@ li.right {
 
 .justify {
   text-align: justify;
+}
+
+.carousel-indicators li {
+  visibility: hidden;
 }
