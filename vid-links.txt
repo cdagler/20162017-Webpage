@@ -1,1 +1,26 @@
-practiceEq1   https://youtu.be/x1h0pMp9APA
+This video shows you how to use a practice program that I created. 
+
+practiceEq1                 https://youtu.be/UDK4CDImcKM    Practice Equations #1                   GOOD
+practiceEq2                 https://youtu.be/JM8cR_4ORDQ    Practice Equations #2                   GOOD
+practiceEqOfALine1          https://youtu.be/18Vp1ZUutJg    Practice Equation Of A Line #1          GOOD
+practiceEqOfALine2          https://youtu.be/BiCkV9D_kBc    Practice Equation Of A Line #2          GOOD
+practiceFactoringPolys      https://youtu.be/auNyysEYXoA    Practice Factoring Polynomials          GOOD
+practiceFindingMandB        https://youtu.be/CxVqExG9XL0    Practice Finding Slope and Y-Intercept  GOOD
+practiceFractions           https://youtu.be/omnuvIDQl2A    Practice Fractions                      GOOD
+practiceIntegers1           https://youtu.be/QNT7AIyid2M    Practice Integers #1                    GOOD
+practiceIntegers2           https://youtu.be/0taES8dZkbw    Practice Integers #2                    GOOD
+practiceMuliPolys           https://youtu.be/1p1EDhgYjCQ    Practice Multiplying Polynomials        GOOD
+practiceMultiBinomials      https://youtu.be/BFNoLh-qibE    Download Practice Multiplying Binomials GOOD
+practiceOrderofOps          https://youtu.be/7dTdP0Av4d4    Practice Order of Operations            GOOD
+practiceQuadraticFormula1   https://youtu.be/71FnrfODRTQ    Practice Quadratic Formula #1           GOOD
+practiceSlope1              https://youtu.be/PwIFC9qNC2k    Practice Slope of a Line #1             GOOD
+practiceSlope2              https://youtu.be/O3VrPizYe_8    Practice Slope of a Line #2             GOOD
+practiceSolveByFactoring1   https://youtu.be/dMSrLhTeYUM    Practice Solve By Factoring #1          GOOD
+practiceSolveByFactoring2   https://youtu.be/7JJlDX3D0nQ    Practice Solve By Factoring #2          GOOD
+practiceSystems1            https://youtu.be/DLoAuTeeV6c    Practice Systems of Equations #1        GOOD
+practiceSystems2            https://youtu.be/k1pMNgRtBz8    Practice Systems of Equations #2        GOOD
+practiceSystems3            https://youtu.be/T6r2in87bQY    Practice Systems of Equations #3        GOOD
+practiceSystems4            https://youtu.be/3xJKfQcbiYY    Practice Systems of Equations #4        GOOD
+
+
+

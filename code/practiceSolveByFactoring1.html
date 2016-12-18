@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>practiceSolveByFactoring1.ch</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+}
+.S1 {
+	font-weight: bold;
+	font-family: 'Courier New';
+	color: #007F00;
+	font-size: 10pt;
+}
+.S4 {
+	font-weight: bold;
+	color: #007F7F;
+}
+.S5 {
+	font-weight: bold;
+	color: #ff0000;
+}
+.S6 {
+	font-weight: bold;
+	color: #7F007F;
+}
+.S7 {
+	font-weight: bold;
+	color: #7F007F;
+}
+.S9 {
+	font-weight: bold;
+	color: #7F7F00;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+}
+.S11 {
+	font-weight: bold;
+	color: #000000;
+}
+.S16 {
+	font-weight: bold;
+	color: #FF00FF;
+}
+span {
+	font-family: 'Courier New';
+	color: #000000;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S1">/* File: &nbsp;&nbsp;&nbsp;practiceSolveByFactoring1.ch </span><br />
+<span class="S1">&nbsp;* Version: 2.1</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Purpose: This program provides practice solving equations by factoring</span><br />
+<span class="S1">&nbsp;* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;involving:</span><br />
+<span class="S1">&nbsp;* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;difference of squares</span><br />
+<span class="S1">&nbsp;* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;common factor</span><br />
+<span class="S1">&nbsp;* &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x^2+bx+c=0</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Author: &nbsp;Clay Dagler (Clayton-Dagler@scusd.edu)</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<br />
+<span class="S9">#define MAX_COEFFICIENT 8</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the Greatest Common Factor of 2 numbers (Euclidean Algorithm).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">gcf</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">);</span><br />
+<br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation1Print</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation2Print</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation3Print</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation1Solution1</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation1Solution2</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation2Solution1</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation2Solution2</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation3Solution1</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation3Solution2</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">);</span><br />
+<br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">getRandInt</span><span class="S10">();</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">equals</span><span class="S10">(</span><span class="S5">char</span><span class="S10">*</span><span class="S0"> </span><span class="S11">frac1</span><span class="S10">,</span><span class="S0"> </span><span class="S5">char</span><span class="S10">*</span><span class="S0"> </span><span class="S11">frac2</span><span class="S10">);</span><br />
+<br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getTermNoOp</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S5">char</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getTerm</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S5">char</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getConstTerm</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">val</span><span class="S10">);</span><br />
+<br />
+<span class="S16">srand</span><span class="S10">(</span><span class="S16">time</span><span class="S10">(</span><span class="S16">NULL</span><span class="S10">));</span><br />
+<br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">i</span><span class="S10">,</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S11">c</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">;</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">stuAns1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">stuAns2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ans2</span><span class="S10">;</span><br />
+<span class="S5">char</span><span class="S0"> </span><span class="S11">var</span><span class="S10">;</span><br />
+<span class="S5">double</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">;</span><br />
+<br />
+<span class="S5">switch</span><span class="S10">((</span><span class="S4">1</span><span class="S10">+</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">5</span><span class="S10">)){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">1</span><span class="S10">:</span><span class="S0"> </span><span class="S11">var</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S7">'x'</span><span class="S10">;</span><span class="S0"> </span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">2</span><span class="S10">:</span><span class="S0"> </span><span class="S11">var</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S7">'y'</span><span class="S10">;</span><span class="S0"> </span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">3</span><span class="S10">:</span><span class="S0"> </span><span class="S11">var</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S7">'a'</span><span class="S10">;</span><span class="S0"> </span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">4</span><span class="S10">:</span><span class="S0"> </span><span class="S11">var</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S7">'p'</span><span class="S10">;</span><span class="S0"> </span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">5</span><span class="S10">:</span><span class="S0"> </span><span class="S11">var</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S7">'n'</span><span class="S10">;</span><span class="S0"> </span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S16">printf</span><span class="S10">(</span><span class="S6">"Enter the number of problems you want to do: "</span><span class="S10">);</span><br />
+<span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">numOfProblems</span><span class="S10">);</span><br />
+<br />
+<span class="S5">for</span><span class="S10">(</span><span class="S11">i</span><span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">&lt;</span><span class="S11">numOfProblems</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">++){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">a</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">getRandInt</span><span class="S10">();</span><span class="S0"> </span><span class="S11">b</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">getRandInt</span><span class="S10">();</span><span class="S0"> </span><span class="S11">c</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">getRandInt</span><span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\n\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">switch</span><span class="S10">(</span><span class="S4">1</span><span class="S10">+</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">3</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">1</span><span class="S10">:</span><span class="S0"> </span><span class="S11">a</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">a</span><span class="S10">);</span><span class="S0"> </span><span class="S11">b</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">b</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">while</span><span class="S10">((</span><span class="S11">a</span><span class="S10">==</span><span class="S4">1</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span><span class="S11">b</span><span class="S10">==</span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S10">||</span><span class="S0"> </span><span class="S10">(</span><span class="S11">a</span><span class="S10">&amp;</span><span class="S11">b</span><span class="S10">!=</span><span class="S4">0</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span><span class="S11">b</span><span class="S10">%</span><span class="S11">a</span><span class="S10">!=</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S10">||</span><span class="S0"> </span><span class="S10">(</span><span class="S11">a</span><span class="S10">==</span><span class="S11">b</span><span class="S10">)){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">a</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">getRandInt</span><span class="S10">());</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">b</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">getRandInt</span><span class="S10">());</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"#%d: %s\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">(</span><span class="S11">i</span><span class="S10">+</span><span class="S4">1</span><span class="S10">),</span><span class="S0"> </span><span class="S11">equation1Print</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">equation1Solution1</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">ans2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">equation1Solution2</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">2</span><span class="S10">:</span><span class="S0"> </span><span class="S11">a</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">a</span><span class="S10">);</span><span class="S0"> </span><span class="S11">b</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">b</span><span class="S10">)/</span><span class="S4">2</span><span class="S10">+</span><span class="S4">3</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"#%d: %s\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">(</span><span class="S11">i</span><span class="S10">+</span><span class="S4">1</span><span class="S10">),</span><span class="S0"> </span><span class="S11">equation2Print</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">equation2Solution1</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">ans2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">equation2Solution2</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><span class="S0"> &nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">3</span><span class="S10">:</span><span class="S0"> </span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"#%d: %s\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">(</span><span class="S11">i</span><span class="S10">+</span><span class="S4">1</span><span class="S10">),</span><span class="S0"> </span><span class="S11">equation3Print</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">equation3Solution1</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">ans2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">equation3Solution2</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">default</span><span class="S10">:</span><span class="S0"> </span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"THE PC PICKED THE WRONG EQUATION!!!"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">exit</span><span class="S10">(</span><span class="S4">1</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Write you 1st answer in (a/b).\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">" &nbsp;%c1 = "</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%s"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">stuAns1</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Write you 2nd answer in (a/b).\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">" &nbsp;%c2 = "</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%s"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">stuAns2</span><span class="S10">);</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">((</span><span class="S11">equals</span><span class="S10">(</span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">stuAns1</span><span class="S10">)</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span><span class="S11">equals</span><span class="S10">(</span><span class="S11">ans2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">stuAns2</span><span class="S10">))</span><span class="S0"> </span><span class="S10">||</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">(</span><span class="S11">equals</span><span class="S10">(</span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">stuAns2</span><span class="S10">)</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span><span class="S11">equals</span><span class="S10">(</span><span class="S11">ans2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">stuAns1</span><span class="S10">)))</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\n*** Great Job ***\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numCorrect</span><span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\nSorry, the correct answers are %c1=%s, %c2=%s ...\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ans1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ans2</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sleep</span><span class="S10">(</span><span class="S4">2</span><span class="S10">);</span><br />
+<span class="S10">}</span><span class="S0"> &nbsp;&nbsp;&nbsp;</span><br />
+<br />
+<span class="S5">if</span><span class="S10">(</span><span class="S11">numOfProblems</span><span class="S10">&gt;</span><span class="S4">5</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">percentCorrect</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">(</span><span class="S4">1.0</span><span class="S10">*</span><span class="S11">numCorrect</span><span class="S10">)/(</span><span class="S4">1.0</span><span class="S10">*</span><span class="S11">numOfProblems</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">percentCorrect</span><span class="S10">&gt;=</span><span class="S4">0.80</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You are a STAR at this ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">percentCorrect</span><span class="S10">&gt;=</span><span class="S4">0.65</span><span class="S10">){</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Nice job, you are on you way to mastering this ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Great effort, you will benefit with more practice ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S10">}</span><br />
+<span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d out of %d.\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">);</span><br />
+<br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints (ax)^2-b^2=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation1Print</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><span class="S0"> &nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S11">B</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">A</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">a</span><span class="S10">*</span><span class="S11">a</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">B</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">b</span><span class="S10">*</span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%s^2-%d=0"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">getTermNoOp</span><span class="S10">(</span><span class="S11">A</span><span class="S10">,</span><span class="S11">var</span><span class="S10">),</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">B</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints abx^2+bcx=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation2Print</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><span class="S0"> &nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S11">B</span><span class="S10">;</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">A</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">a</span><span class="S10">*</span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">B</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">b</span><span class="S10">*</span><span class="S11">c</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%s^2%s=0"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">getTermNoOp</span><span class="S10">(</span><span class="S11">A</span><span class="S10">,</span><span class="S11">var</span><span class="S10">),</span><span class="S0"> </span><span class="S11">getTerm</span><span class="S10">(</span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints x^2+Ax+C=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation3Print</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><span class="S0"> &nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S11">B</span><span class="S10">;</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">A</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">b</span><span class="S10">+</span><span class="S11">c</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">B</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">b</span><span class="S10">*</span><span class="S11">c</span><span class="S10">;</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%c^2%s%s=0"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">,</span><span class="S0"> </span><span class="S11">getTerm</span><span class="S10">(</span><span class="S11">A</span><span class="S10">,</span><span class="S11">var</span><span class="S10">),</span><span class="S0"> </span><span class="S11">getConstTerm</span><span class="S10">(</span><span class="S11">B</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the '1st' root to (ax)^2-b^2=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation1Solution1</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">-</span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">a</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">GDC</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">gcf</span><span class="S10">(</span><span class="S16">abs</span><span class="S10">(</span><span class="S11">numerator</span><span class="S10">),</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">/=</span><span class="S0"> </span><span class="S11">GDC</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">/=</span><span class="S0"> </span><span class="S11">GDC</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">&lt;</span><span class="S4">0</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">!=</span><span class="S4">1</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d/%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numerator</span><span class="S10">,</span><span class="S0"> </span><span class="S11">denominator</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numerator</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the '2nd' root to (ax)^2-b^2=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation1Solution2</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">a</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">GDC</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">gcf</span><span class="S10">(</span><span class="S16">abs</span><span class="S10">(</span><span class="S11">numerator</span><span class="S10">),</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">/=</span><span class="S0"> </span><span class="S11">GDC</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">/=</span><span class="S0"> </span><span class="S11">GDC</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">&lt;</span><span class="S4">0</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">!=</span><span class="S4">1</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d/%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numerator</span><span class="S10">,</span><span class="S0"> </span><span class="S11">denominator</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numerator</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the '1st' root to abx^2+bcx=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation2Solution1</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">-</span><span class="S11">c</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">a</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">GDC</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">gcf</span><span class="S10">(</span><span class="S16">abs</span><span class="S10">(</span><span class="S11">numerator</span><span class="S10">),</span><span class="S0"> </span><span class="S16">abs</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">/=</span><span class="S0"> </span><span class="S11">GDC</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">/=</span><span class="S0"> </span><span class="S11">GDC</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">&lt;</span><span class="S4">0</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numerator</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">denominator</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">denominator</span><span class="S10">!=</span><span class="S4">1</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d/%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numerator</span><span class="S10">,</span><span class="S0"> </span><span class="S11">denominator</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numerator</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the '2nd' root to abx^2+bcx=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation2Solution2</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S6">"0"</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the '1st' root to x^2+Ax+C=0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation3Solution1</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">*</span><span class="S11">b</span><span class="S10">);</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">equation3Solution2</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">512</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">*</span><span class="S11">c</span><span class="S10">);</span><span class="S0"> &nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">getRandInt</span><span class="S10">(){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S16">sign</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S10">==</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S10">?</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">:</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S16">sign</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S10">(</span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()%</span><span class="S11">MAX_COEFFICIENT</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* returns 1 if the fractions are the same, else 0.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">equals</span><span class="S10">(</span><span class="S5">char</span><span class="S10">*</span><span class="S0"> </span><span class="S11">frac1</span><span class="S10">,</span><span class="S0"> </span><span class="S5">char</span><span class="S10">*</span><span class="S0"> </span><span class="S11">frac2</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">b1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">a2</span><span class="S10">,</span><span class="S0"> </span><span class="S11">b2</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">i</span><span class="S10">,</span><span class="S0"> </span><span class="S11">inputFraction</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansFraction</span><span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">frac1Copy</span><span class="S10">[</span><span class="S4">32</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">frac2Copy</span><span class="S10">[</span><span class="S4">32</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">frac1Copy</span><span class="S10">,</span><span class="S0"> </span><span class="S11">frac1</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">frac2Copy</span><span class="S10">,</span><span class="S0"> </span><span class="S11">frac2</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S1">/*</span><br />
+<span class="S1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* Checking to see if the fractions are not integers.</span><br />
+<span class="S1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">for</span><span class="S10">(</span><span class="S11">i</span><span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">&lt;</span><span class="S16">strlen</span><span class="S10">(</span><span class="S11">frac2</span><span class="S10">);</span><span class="S0"> </span><span class="S11">i</span><span class="S10">++){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">frac1</span><span class="S10">[</span><span class="S11">i</span><span class="S10">]==</span><span class="S7">'/'</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">ansFraction</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">frac2</span><span class="S10">[</span><span class="S11">i</span><span class="S10">]==</span><span class="S7">'/'</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">inputFraction</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">a1</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">atoi</span><span class="S10">(</span><span class="S16">strtok</span><span class="S10">(</span><span class="S11">frac1Copy</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"(/ "</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">b1</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">(</span><span class="S11">ansFraction</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S10">?</span><span class="S0"> </span><span class="S16">atoi</span><span class="S10">(</span><span class="S16">strtok</span><span class="S10">(</span><span class="S16">NULL</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"/ &nbsp;()"</span><span class="S10">))</span><span class="S0"> </span><span class="S10">:</span><span class="S0"> </span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">a2</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">atoi</span><span class="S10">(</span><span class="S16">strtok</span><span class="S10">(</span><span class="S11">frac2Copy</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"/ &nbsp;()"</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">b2</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">(</span><span class="S11">inputFraction</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S10">?</span><span class="S0"> </span><span class="S16">atoi</span><span class="S10">(</span><span class="S16">strtok</span><span class="S10">(</span><span class="S16">NULL</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"/ &nbsp;()"</span><span class="S10">))</span><span class="S0"> </span><span class="S10">:</span><span class="S0"> </span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">a1</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S11">a2</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span><span class="S11">b1</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S11">b2</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This finds the Greatest Common Factor of 2 numbers (Euclidean Algorithm).</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Step throught with a=6, b=8.</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Step 1: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 2: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 3:</span><br />
+<span class="S1">&nbsp;* =========== &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=========== &nbsp;&nbsp;&nbsp;&nbsp;===========</span><br />
+<span class="S1">&nbsp;* c=a%b=6%8=6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c=a%b=8%6=2 &nbsp;&nbsp;&nbsp;&nbsp;c=a%b=6%2=0</span><br />
+<span class="S1">&nbsp;* c!=0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c!=0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c==0</span><br />
+<span class="S1">&nbsp;* a=b=8 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a=b=6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return b(=2)</span><br />
+<span class="S1">&nbsp;* b=c=6 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b=c=2</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">gcf</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S5">int</span><span class="S0"> </span><span class="S11">b</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">c</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">while</span><span class="S10">(</span><span class="S4">1</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">c</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">a</span><span class="S10">%</span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">c</span><span class="S10">==</span><span class="S4">0</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">a</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">b</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">b</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">c</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* The next 3 functions are used to help with formatting; e.g.:</span><br />
+<span class="S1">&nbsp;* &nbsp;&nbsp;&nbsp;No '+-'</span><br />
+<span class="S1">&nbsp;* &nbsp;&nbsp;&nbsp;No '1x' ...</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getTermNoOp</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S5">char</span><span class="S0"> </span><span class="S11">var</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; </span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">16</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">val</span><span class="S10">==</span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">val</span><span class="S10">==-</span><span class="S4">1</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"-%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<br />
+<span class="S0">&nbsp; &nbsp; </span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getTerm</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S5">char</span><span class="S0"> </span><span class="S11">var</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; </span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">16</span><span class="S10">];</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">val</span><span class="S10">==</span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">val</span><span class="S10">==-</span><span class="S4">1</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"-%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">val</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+%d%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d%c"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">val</span><span class="S10">,</span><span class="S0"> </span><span class="S11">var</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp; &nbsp; </span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getConstTerm</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">val</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">string_t</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S0">&nbsp; &nbsp; </span><span class="S5">char</span><span class="S0"> </span><span class="S11">str</span><span class="S10">[</span><span class="S4">16</span><span class="S10">];</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">val</span><span class="S10">&lt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">val</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">str</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">val</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp; &nbsp; </span><span class="S11">ans</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">str</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S0"></span></span>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>practiceSqRoot.ch</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+}
+.S1 {
+	font-weight: bold;
+	font-family: 'Courier New';
+	color: #007F00;
+	font-size: 10pt;
+}
+.S4 {
+	font-weight: bold;
+	color: #007F7F;
+}
+.S5 {
+	font-weight: bold;
+	color: #ff0000;
+}
+.S6 {
+	font-weight: bold;
+	color: #7F007F;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+}
+.S11 {
+	font-weight: bold;
+	color: #000000;
+}
+.S16 {
+	font-weight: bold;
+	color: #FF00FF;
+}
+span {
+	font-family: 'Courier New';
+	color: #000000;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S1">/* File: &nbsp;&nbsp;&nbsp;practiceSqroot.ch </span><br />
+<span class="S1">&nbsp;* Purpose: This program provides pratice for nth roots.</span><br />
+<span class="S1">&nbsp;* Author: &nbsp;Clay Dagler (cdagler@yahoo.com)</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* Returns a random inside number of a square root.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">getRandSquareRoot</span><span class="S10">();</span><br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* Simplifies sqrt(n) to A sqrt(B) and stores in A and B. </span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">simplySquareRoot</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">n</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">B</span><span class="S10">);</span><br />
+<br />
+<span class="S16">srand</span><span class="S10">(</span><span class="S16">time</span><span class="S10">(</span><span class="S16">NULL</span><span class="S10">));</span><br />
+<br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">i</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">x</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">A</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">B</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansA</span><span class="S10">=</span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansB</span><span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S5">double</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">;</span><br />
+<br />
+<span class="S16">printf</span><span class="S10">(</span><span class="S6">"Enter the number of problems you want to practice:\n"</span><span class="S10">);</span><br />
+<span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">numOfProblems</span><span class="S10">);</span><br />
+<br />
+<span class="S5">for</span><span class="S10">(</span><span class="S11">i</span><span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">&lt;</span><span class="S11">numOfProblems</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">++){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">x</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">getRandSquareRoot</span><span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Simplify sqrt(%d) = A*sqrt(B)\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">x</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">" &nbsp;A: "</span><span class="S10">);</span><span class="S0"> </span><span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">A</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">" &nbsp;B: "</span><span class="S10">);</span><span class="S0"> </span><span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">B</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">simplySquareRoot</span><span class="S10">(</span><span class="S11">x</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansA</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansB</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">A</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S11">ansA</span><span class="S0"> </span><span class="S10">&amp;&amp;</span><span class="S0"> </span><span class="S11">B</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S11">ansB</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\nGreat Job, sqrt(%d)=%d*sqrt(%d)\n\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">x</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansA</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansB</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numCorrect</span><span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\nNice try, but sqrt(%d)=%d*sqrt(%d)\n\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">x</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansA</span><span class="S10">,</span><span class="S0"> </span><span class="S11">ansB</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sleep</span><span class="S10">(</span><span class="S4">2</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S5">if</span><span class="S10">(</span><span class="S11">numOfProblems</span><span class="S10">&gt;</span><span class="S4">5</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">percentCorrect</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">(</span><span class="S4">1.0</span><span class="S10">*</span><span class="S11">numCorrect</span><span class="S10">)/(</span><span class="S4">1.0</span><span class="S10">*</span><span class="S11">numOfProblems</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">percentCorrect</span><span class="S10">&gt;=</span><span class="S4">0.80</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You are a STAR at this ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">percentCorrect</span><span class="S10">&gt;=</span><span class="S4">0.65</span><span class="S10">){</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Nice job, you are on you way to mastering this ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Great effort, you will benefit with more practice ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S10">}</span><br />
+<span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d out of %d.\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProblems</span><span class="S10">);</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* Returns a random inside number of a square root.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">getRandSquareRoot</span><span class="S10">(){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">perfectSquares</span><span class="S10">[]</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">{</span><span class="S4">4</span><span class="S10">,</span><span class="S0"> </span><span class="S4">9</span><span class="S10">,</span><span class="S0"> </span><span class="S4">16</span><span class="S10">,</span><span class="S0"> </span><span class="S4">25</span><span class="S10">,</span><span class="S0"> </span><span class="S4">36</span><span class="S10">,</span><span class="S0"> </span><span class="S4">49</span><span class="S10">,</span><span class="S0"> </span><span class="S4">81</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S10">,</span><span class="S0"> </span><span class="S4">121</span><span class="S10">};</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">notPerfectSquares</span><span class="S10">[]</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">{</span><span class="S4">2</span><span class="S10">,</span><span class="S0"> </span><span class="S4">3</span><span class="S10">,</span><span class="S0"> </span><span class="S4">5</span><span class="S10">,</span><span class="S0"> </span><span class="S4">6</span><span class="S10">,</span><span class="S0"> </span><span class="S4">7</span><span class="S10">};</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">perfectSquareIndex</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">8</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">notPerfectSquareIndex</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">perfectSquareIndex</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">8</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">notPerfectSquareIndex</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">2</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">perfectSquareIndex</span><span class="S0"> </span><span class="S10">&gt;</span><span class="S0"> </span><span class="S4">5</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">notPerfectSquareIndex</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">3</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">notPerfectSquareIndex</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">5</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">perfectSquares</span><span class="S10">[</span><span class="S11">perfectSquareIndex</span><span class="S10">]</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">notPerfectSquares</span><span class="S10">[</span><span class="S11">notPerfectSquareIndex</span><span class="S10">];</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* Simplifys sqrt(n) to A sqrt(B) and stores in A and B. </span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">simplySquareRoot</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">n</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">B</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">i</span><span class="S10">,</span><span class="S0"> </span><span class="S11">outsideNum</span><span class="S10">,</span><span class="S0"> </span><span class="S11">insideNum</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">for</span><span class="S10">(</span><span class="S11">i</span><span class="S10">=</span><span class="S16">sqrt</span><span class="S10">(</span><span class="S11">x</span><span class="S10">);</span><span class="S0"> </span><span class="S11">i</span><span class="S10">&gt;</span><span class="S4">1</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">--){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">x</span><span class="S10">%(</span><span class="S11">i</span><span class="S10">*</span><span class="S11">i</span><span class="S10">)==</span><span class="S4">0</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">outsideNum</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">i</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">insideNum</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">x</span><span class="S10">/(</span><span class="S11">outsideNum</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">outsideNum</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">A</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">outsideNum</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">B</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">insideNum</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<span class="S0"></span></span>
+</body>
+</html>

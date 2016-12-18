@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>practiceOrderOfOps.ch</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+}
+.S1 {
+	font-weight: bold;
+	font-family: 'Courier New';
+	color: #007F00;
+	font-size: 10pt;
+}
+.S4 {
+	font-weight: bold;
+	color: #007F7F;
+}
+.S5 {
+	font-weight: bold;
+	color: #ff0000;
+}
+.S6 {
+	font-weight: bold;
+	color: #7F007F;
+}
+.S9 {
+	font-weight: bold;
+	color: #7F7F00;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+}
+.S11 {
+	font-weight: bold;
+	color: #000000;
+}
+.S16 {
+	font-weight: bold;
+	color: #FF00FF;
+}
+span {
+	font-family: 'Courier New';
+	color: #000000;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S1">/* File: practiceOrderOfOps.ch</span><br />
+<span class="S1">&nbsp;* Version: 2.1</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Test the result for an order of operation problem where the numbers range [1, 10] </span><br />
+<span class="S1">&nbsp;* with random messages </span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Author: &nbsp;Clay Dagler (Clayton-Dagler@scusd.edu)</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S9">#include &lt;stdio.h&gt;</span><br />
+<span class="S9">#include &lt;stdlib.h&gt; &nbsp;</span><span class="S1">/* for using srand() and rand() in the C standard lib */</span><br />
+<span class="S9">#include &lt;time.h&gt; &nbsp;&nbsp;&nbsp;</span><span class="S1">/* for using time() in the C standard lib &nbsp;*/</span><br />
+<br />
+<span class="S1">/* function prototypes to print different order of operation expressions */</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression01</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression02</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression03</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">E</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">F</span><span class="S10">);</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression04</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">);</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression05</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">);</span><br />
+<br />
+<span class="S1">/* function prototypes to simplify different order of operation expressions */</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression01</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression02</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression03</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">E</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">F</span><span class="S10">);</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression04</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">);</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression05</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">);</span><br />
+<br />
+<span class="S16">srand</span><span class="S10">(</span><span class="S16">time</span><span class="S10">(</span><span class="S16">NULL</span><span class="S10">));</span><br />
+<br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">main</span><span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">i</span><span class="S10">,</span><span class="S0"> </span><span class="S11">answer</span><span class="S10">,</span><span class="S0"> </span><span class="S11">studentAnswer</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProbs</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">;</span><span class="S0"> </span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">n</span><span class="S10">;</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S1">/* the random expressions the student is working on */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">a</span><span class="S10">,</span><span class="S0"> </span><span class="S11">b</span><span class="S10">,</span><span class="S0"> </span><span class="S11">c</span><span class="S10">,</span><span class="S0"> </span><span class="S11">d</span><span class="S10">,</span><span class="S0"> </span><span class="S11">e</span><span class="S10">,</span><span class="S0"> </span><span class="S11">f</span><span class="S10">;</span><span class="S0"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S1">/* the random integers in the expressions */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">double</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">srand</span><span class="S10">(</span><span class="S16">time</span><span class="S10">(</span><span class="S16">NULL</span><span class="S10">));</span><span class="S0"> &nbsp;&nbsp;</span><span class="S1">/* seed the random number generator */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"How many problems are you going to do: "</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">numOfProbs</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">for</span><span class="S10">(</span><span class="S11">i</span><span class="S10">=</span><span class="S4">0</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">&lt;</span><span class="S11">numOfProbs</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">++){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">a</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">10</span><span class="S10">;</span><span class="S0"> </span><span class="S1">/* get x in the range [1, 10] */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">b</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">10</span><span class="S10">;</span><span class="S0"> </span><span class="S1">/* get y in the range [1, 10] */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">c</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">10</span><span class="S10">;</span><span class="S0"> </span><span class="S1">/* get x in the range [1, 10] */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">d</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">10</span><span class="S10">;</span><span class="S0"> </span><span class="S1">/* get y in the range [1, 10] */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">e</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">10</span><span class="S10">;</span><span class="S0"> </span><span class="S1">/* get x in the range [1, 10] */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">f</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S0"> </span><span class="S10">+</span><span class="S0"> </span><span class="S16">rand</span><span class="S10">()</span><span class="S0"> </span><span class="S10">%</span><span class="S0"> </span><span class="S4">10</span><span class="S10">;</span><span class="S0"> </span><span class="S1">/* get y in the range [1, 10] */</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S1">/* making some of the integers negative */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S11">a</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S11">b</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S11">c</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S11">d</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S11">e</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">2</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S4">1</span><span class="S10">)</span><span class="S0"> </span><span class="S11">f</span><span class="S0"> </span><span class="S10">*=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">1</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">switch</span><span class="S10">(</span><span class="S16">rand</span><span class="S10">()%</span><span class="S4">5</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">0</span><span class="S10">:</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression01</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">,</span><span class="S11">d</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">answer</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression01</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">,</span><span class="S11">d</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">1</span><span class="S10">:</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression02</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">,</span><span class="S11">d</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">answer</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression02</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">,</span><span class="S11">d</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">2</span><span class="S10">:</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression03</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">,</span><span class="S11">d</span><span class="S10">,</span><span class="S11">e</span><span class="S10">,</span><span class="S11">f</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">answer</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression03</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">,</span><span class="S11">c</span><span class="S10">,</span><span class="S11">d</span><span class="S10">,</span><span class="S11">e</span><span class="S10">,</span><span class="S11">f</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">3</span><span class="S10">:</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression04</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">answer</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression04</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">case</span><span class="S0"> </span><span class="S4">4</span><span class="S10">:</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression05</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">answer</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression05</span><span class="S10">(</span><span class="S11">a</span><span class="S10">,</span><span class="S11">b</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">break</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">scanf</span><span class="S10">(</span><span class="S6">"%d"</span><span class="S10">,</span><span class="S0"> </span><span class="S10">&amp;</span><span class="S11">studentAnswer</span><span class="S10">);</span><span class="S0"> </span><span class="S1">/* get the user's answer */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">studentAnswer</span><span class="S0"> </span><span class="S10">==</span><span class="S0"> </span><span class="S11">answer</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">numCorrect</span><span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\n &nbsp;*** Nice Work!!! ***\n\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\n\n &nbsp;Sorry the answer is %d \n\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">answer</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">numOfProbs</span><span class="S10">&gt;</span><span class="S4">5</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">percentCorrect</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">(</span><span class="S4">1.0</span><span class="S10">*</span><span class="S11">numCorrect</span><span class="S10">)/(</span><span class="S4">1.0</span><span class="S10">*</span><span class="S11">numOfProbs</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">percentCorrect</span><span class="S10">&gt;=</span><span class="S4">0.80</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You are a STAR at this ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProbs</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">percentCorrect</span><span class="S10">&gt;=</span><span class="S4">0.65</span><span class="S10">){</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Nice job, you are on you way to mastering this ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProbs</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"Great effort, you will benefit with more practice ...\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d/%d = %.2lf%%\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProbs</span><span class="S10">,</span><span class="S0"> </span><span class="S4">100</span><span class="S0"> </span><span class="S10">*</span><span class="S0"> </span><span class="S11">percentCorrect</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"You got %d out of %d.\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numCorrect</span><span class="S10">,</span><span class="S0"> </span><span class="S11">numOfProbs</span><span class="S10">);</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints out A+B(C+D).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression01</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">op1</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S6">""</span><span class="S10">,</span><span class="S0"> </span><span class="S11">op2</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">B</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op1</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">D</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op2</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"What is %d%s%d*(%d%s%d):\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S11">op1</span><span class="S10">,</span><span class="S11">B</span><span class="S10">,</span><span class="S11">C</span><span class="S10">,</span><span class="S11">op2</span><span class="S10">,</span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints out (A+B)(C+D).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression02</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">op1</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S6">""</span><span class="S10">,</span><span class="S0"> </span><span class="S11">op2</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">B</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op1</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">D</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op2</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"What is (%d%s%d)*(%d%s%d):\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S11">op1</span><span class="S10">,</span><span class="S11">B</span><span class="S10">,</span><span class="S11">C</span><span class="S10">,</span><span class="S11">op2</span><span class="S10">,</span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints out A(B+C)+D(E+F).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression03</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">E</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">F</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">op1</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S6">""</span><span class="S10">,</span><span class="S0"> </span><span class="S11">op2</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">,</span><span class="S0"> </span><span class="S11">op3</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]=</span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">C</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op1</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">D</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op2</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">F</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op3</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"What is %d*(%d%s%d)%s%d*(%d%s%d):\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S11">B</span><span class="S10">,</span><span class="S11">op1</span><span class="S10">,</span><span class="S11">C</span><span class="S10">,</span><span class="S11">op2</span><span class="S10">,</span><span class="S11">D</span><span class="S10">,</span><span class="S11">E</span><span class="S10">,</span><span class="S11">op3</span><span class="S10">,</span><span class="S11">F</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints out (A)^2+(B)^2.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression04</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"What is (%d)^2+(%d)^2:\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S11">B</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This prints out 2*(A)^2+B.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">void</span><span class="S0"> </span><span class="S11">printOrderOfOpExpression05</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">op1</span><span class="S10">[</span><span class="S4">4</span><span class="S10">]</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S6">""</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">B</span><span class="S10">&gt;</span><span class="S4">0</span><span class="S10">)</span><span class="S0"> </span><span class="S16">strcpy</span><span class="S10">(</span><span class="S11">op1</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"+"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"What is 2*(%d)^2%s%d:\n"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S11">op1</span><span class="S10">,</span><span class="S0"> </span><span class="S11">B</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This simplifys out A+B(C+D).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression01</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">A</span><span class="S10">+</span><span class="S11">B</span><span class="S10">*(</span><span class="S11">C</span><span class="S10">+</span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This simplifys out (A+B)(C+D).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression02</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S10">(</span><span class="S11">A</span><span class="S10">+</span><span class="S11">B</span><span class="S10">)*(</span><span class="S11">C</span><span class="S10">+</span><span class="S11">D</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This simplifys out A(B+C)+D(E+F).</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression03</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">C</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">D</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">E</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">F</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">A</span><span class="S10">*(</span><span class="S11">B</span><span class="S10">+</span><span class="S11">C</span><span class="S10">)+</span><span class="S11">D</span><span class="S10">*(</span><span class="S11">E</span><span class="S10">+</span><span class="S11">F</span><span class="S10">);</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This simplifys out (A)^2+(B)^2.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression04</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">A</span><span class="S10">*</span><span class="S11">A</span><span class="S10">+</span><span class="S11">B</span><span class="S10">*</span><span class="S11">B</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* This simplifys out 2*(A)^2+B.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">simplifyOrderOfOpExpression05</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">A</span><span class="S10">,</span><span class="S0"> </span><span class="S5">int</span><span class="S0"> </span><span class="S11">B</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S4">2</span><span class="S10">*</span><span class="S11">A</span><span class="S10">*</span><span class="S11">A</span><span class="S10">+</span><span class="S11">B</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S0"></span></span>
+</body>
+</html>
