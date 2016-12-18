@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>expTangents.ch</title>
+<meta name="Generator" content="SciTE - www.Scintilla.org" />
+<style type="text/css">
+.S0 {
+	color: #808080;
+}
+.S1 {
+	font-weight: bold;
+	font-family: 'Courier New';
+	color: #007F00;
+	font-size: 10pt;
+}
+.S4 {
+	font-weight: bold;
+	color: #007F7F;
+}
+.S5 {
+	font-weight: bold;
+	color: #ff0000;
+}
+.S6 {
+	font-weight: bold;
+	color: #7F007F;
+}
+.S9 {
+	font-weight: bold;
+	color: #7F7F00;
+}
+.S10 {
+	font-weight: bold;
+	color: #000000;
+}
+.S11 {
+	font-weight: bold;
+	color: #000000;
+}
+.S16 {
+	font-weight: bold;
+	color: #FF00FF;
+}
+span {
+	font-family: 'Courier New';
+	color: #000000;
+	font-size: 10pt;
+}
+</style>
+</head>
+<body bgcolor="#FFFFFF">
+<span><span class="S1">/* File Name: expTangents.ch</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* This program displays the graph [y=e^x] defined by</span><br />
+<span class="S1">&nbsp;* its tangent lines.</span><br />
+<span class="S1">&nbsp;*</span><br />
+<span class="S1">&nbsp;* Name: Clay Dagler (Clayton-Dagler@scusd.edu)</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S0">&nbsp;</span><br />
+<span class="S9">#include &lt;chplot.h&gt; </span><br />
+<span class="S9">#include &lt;math.h&gt;</span><br />
+<br />
+<span class="S5">static</span><span class="S0"> </span><span class="S5">double</span><span class="S0"> </span><span class="S11">i</span><span class="S10">;</span><br />
+<br />
+<span class="S1">/*</span><br />
+<span class="S1">&nbsp;* Note: This function was found by finding the tangent </span><br />
+<span class="S1">&nbsp;* lines of e^x by hand and discovering a pattern.</span><br />
+<span class="S1">&nbsp;*/</span><br />
+<span class="S5">double</span><span class="S0"> </span><span class="S11">tangentLine</span><span class="S10">(</span><span class="S5">double</span><span class="S0"> </span><span class="S11">x</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">x</span><span class="S10">*</span><span class="S16">exp</span><span class="S10">(</span><span class="S11">i</span><span class="S10">)-(</span><span class="S11">i</span><span class="S10">-</span><span class="S4">1</span><span class="S10">)*</span><span class="S16">exp</span><span class="S10">(</span><span class="S11">i</span><span class="S10">);</span><br />
+<span class="S10">}</span><span class="S0"> &nbsp;&nbsp;&nbsp;</span><br />
+<br />
+<span class="S5">string_t</span><span class="S0"> </span><span class="S11">getFileName</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">n</span><span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">[</span><span class="S4">64</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">if</span><span class="S10">(</span><span class="S11">n</span><span class="S0"> </span><span class="S10">&lt;</span><span class="S0"> </span><span class="S4">10</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">ans</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"00%d.jpg"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">n</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">n</span><span class="S10">&lt;</span><span class="S4">100</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">ans</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"0%d.jpg"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">n</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S5">if</span><span class="S10">(</span><span class="S11">n</span><span class="S10">&lt;</span><span class="S4">1000</span><span class="S10">)</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">sprintf</span><span class="S10">(</span><span class="S11">ans</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"%d.jpg"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">n</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">else</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">printf</span><span class="S10">(</span><span class="S6">"\aTo many output files!!!!\n"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">exit</span><span class="S10">(</span><span class="S4">1</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">ans</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<span class="S5">int</span><span class="S0"> </span><span class="S11">main</span><span class="S10">()</span><span class="S0"> </span><span class="S10">{</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S16">CPlot</span><span class="S0"> </span><span class="S11">plot</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">double</span><span class="S0"> </span><span class="S11">inc</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">0.2</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">double</span><span class="S0"> </span><span class="S11">xMin</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S10">-</span><span class="S4">3.0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">xMax</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">3.0</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">double</span><span class="S0"> </span><span class="S11">yMin</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">0.0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">yMax</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">20.0</span><span class="S10">;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">char</span><span class="S0"> </span><span class="S11">fileName</span><span class="S10">[</span><span class="S4">32</span><span class="S10">];</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">int</span><span class="S0"> </span><span class="S11">plotNum</span><span class="S0"> </span><span class="S10">=</span><span class="S0"> </span><span class="S4">1</span><span class="S10">;</span><br />
+<br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">mathCoord</span><span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">title</span><span class="S10">(</span><span class="S6">"The Tangents of y=e^x"</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">label</span><span class="S10">(</span><span class="S11">PLOT_AXIS_X</span><span class="S10">,</span><span class="S0"> </span><span class="S6">""</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">label</span><span class="S10">(</span><span class="S11">PLOT_AXIS_Y</span><span class="S10">,</span><span class="S0"> </span><span class="S6">""</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">axisRange</span><span class="S10">(</span><span class="S11">PLOT_AXIS_X</span><span class="S10">,</span><span class="S0"> </span><span class="S11">xMin</span><span class="S10">,</span><span class="S0"> </span><span class="S11">xMax</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">axisRange</span><span class="S10">(</span><span class="S11">PLOT_AXIS_Y</span><span class="S10">,</span><span class="S0"> </span><span class="S11">yMin</span><span class="S10">,</span><span class="S0"> </span><span class="S11">yMax</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">sizeRatio</span><span class="S10">(</span><span class="S4">2</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">grid</span><span class="S10">(</span><span class="S11">PLOT_OFF</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">tics</span><span class="S10">(</span><span class="S11">PLOT_AXIS_XY</span><span class="S10">,</span><span class="S0"> </span><span class="S11">PLOT_OFF</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">axis</span><span class="S10">(</span><span class="S11">PLOT_AXIS_XY</span><span class="S10">,</span><span class="S0"> </span><span class="S11">PLOT_OFF</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">strokeColor</span><span class="S10">(</span><span class="S6">"#99CCFF"</span><span class="S10">);</span><span class="S0"> &nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">strokeWidth</span><span class="S10">(</span><span class="S4">1</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S1">/*</span><br />
+<span class="S1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* The bottom.</span><br />
+<span class="S1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">line</span><span class="S10">(</span><span class="S11">xMin</span><span class="S10">,</span><span class="S0"> </span><span class="S4">0</span><span class="S10">,</span><span class="S0"> </span><span class="S11">xMax</span><span class="S10">,</span><span class="S0"> </span><span class="S4">0</span><span class="S10">);</span><span class="S0"> &nbsp;</span><span class="S1">/* The bottom */</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">outputType</span><span class="S10">(</span><span class="S11">PLOT_OUTPUTTYPE_FILE</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"jpeg"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">getFileName</span><span class="S10">(</span><span class="S11">plotNum</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">plotting</span><span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plotNum</span><span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">for</span><span class="S10">(</span><span class="S11">i</span><span class="S10">=</span><span class="S11">xMin</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">&lt;</span><span class="S11">xMax</span><span class="S10">;</span><span class="S0"> </span><span class="S11">i</span><span class="S10">+=</span><span class="S11">inc</span><span class="S10">){</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">func2D</span><span class="S10">(</span><span class="S11">xMin</span><span class="S10">,</span><span class="S0"> </span><span class="S11">xMax</span><span class="S10">,</span><span class="S0"> </span><span class="S4">500</span><span class="S10">,</span><span class="S0"> </span><span class="S11">tangentLine</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">outputType</span><span class="S10">(</span><span class="S11">PLOT_OUTPUTTYPE_FILE</span><span class="S10">,</span><span class="S0"> </span><span class="S6">"jpeg"</span><span class="S10">,</span><span class="S0"> </span><span class="S11">getFileName</span><span class="S10">(</span><span class="S11">plotNum</span><span class="S10">));</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plot</span><span class="S10">.</span><span class="S11">plotting</span><span class="S10">();</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S11">plotNum</span><span class="S10">++;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S10">}</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S4">0</span><span class="S10">;</span><br />
+<span class="S10">}</span><br />
+<br />
+<br />
+<span class="S0"></span></span>
+</body>
+</html>
