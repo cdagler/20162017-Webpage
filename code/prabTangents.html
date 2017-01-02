@@ -51,8 +51,8 @@ span {
 <body bgcolor="#FFFFFF">
 <span><span class="S1">/* File Name: prabTangents.ch</span><br />
 <span class="S1">&nbsp;*</span><br />
-<span class="S1">&nbsp;* This program displays the parabola (y=x^2) defined by</span><br />
-<span class="S1">&nbsp;* its tangent lines.</span><br />
+<span class="S1">&nbsp;* This program generates several images that can be merged together </span><br />
+<span class="S1">&nbsp;* to create an animation that displays the tangent lines of y=x^2.</span><br />
 <span class="S1">&nbsp;*</span><br />
 <span class="S1">&nbsp;* Name: Clay Dagler (Clayton-Dagler@scusd.edu)</span><br />
 <span class="S1">&nbsp;*/</span><br />
@@ -60,12 +60,12 @@ span {
 <span class="S9">#include &lt;chplot.h&gt; </span><br />
 <span class="S5">static</span><span class="S0"> </span><span class="S5">double</span><span class="S0"> </span><span class="S11">i</span><span class="S10">;</span><br />
 <br />
-<span class="S1">/*</span><br />
-<span class="S1">&nbsp;* Note: This function was found by finding the tangent </span><br />
-<span class="S1">&nbsp;* lines of y=x^2 by hand and discovering a pattern.</span><br />
+<span class="S1">/* </span><br />
+<span class="S1">&nbsp;* The file deriving_tangent_lines.pdf shows how this function was</span><br />
+<span class="S1">&nbsp;* created. </span><br />
 <span class="S1">&nbsp;*/</span><br />
 <span class="S5">double</span><span class="S0"> </span><span class="S11">tangentLine</span><span class="S10">(</span><span class="S5">double</span><span class="S0"> </span><span class="S11">x</span><span class="S10">){</span><br />
-<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S11">i</span><span class="S10">*(</span><span class="S4">2</span><span class="S10">*</span><span class="S11">x</span><span class="S10">-</span><span class="S11">i</span><span class="S10">);</span><br />
+<span class="S0">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="S5">return</span><span class="S0"> </span><span class="S4">2</span><span class="S10">*</span><span class="S11">i</span><span class="S10">*</span><span class="S11">x</span><span class="S10">-</span><span class="S11">i</span><span class="S10">*</span><span class="S11">i</span><span class="S10">;</span><br />
 <span class="S10">}</span><span class="S0"> </span><br />
 <br />
 <span class="S5">string_t</span><span class="S0"> </span><span class="S11">getFileName</span><span class="S10">(</span><span class="S5">int</span><span class="S0"> </span><span class="S11">n</span><span class="S10">)</span><span class="S0"> </span><span class="S10">{</span><br />

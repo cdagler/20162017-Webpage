@@ -1,7 +1,7 @@
 /* File Name: expTangents.ch
  *
- * This program displays the graph [y=e^x] defined by
- * its tangent lines.
+ * This program generates several images that can be merged together 
+ * to create an animation that displays the tangent lines of y=e^x.
  *
  * Name: Clay Dagler (Clayton-Dagler@scusd.edu)
  */
@@ -12,11 +12,11 @@
 static double i;
 
 /*
- * Note: This function was found by finding the tangent 
- * lines of e^x by hand and discovering a pattern.
+ * The file deriving_tangent_lines.pdf shows how this function was
+ * created. 
  */
 double tangentLine(double x){
-    return x*exp(i)-(i-1)*exp(i);
+    return exp(i)*x-exp(i)*i+exp(i);
 }    
 
 string_t getFileName(int n) {

@@ -1,7 +1,7 @@
 /* File Name: prabTangents.ch
  *
- * This program displays the parabola (y=x^2) defined by
- * its tangent lines.
+ * This program generates several images that can be merged together 
+ * to create an animation that displays the tangent lines of y=x^2.
  *
  * Name: Clay Dagler (Clayton-Dagler@scusd.edu)
  */
@@ -9,12 +9,12 @@
 #include <chplot.h> 
 static double i;
 
-/*
- * Note: This function was found by finding the tangent 
- * lines of y=x^2 by hand and discovering a pattern.
+/* 
+ * The file deriving_tangent_lines.pdf shows how this function was
+ * created. 
  */
 double tangentLine(double x){
-    return i*(2*x-i);
+    return 2*i*x-i*i;
 } 
 
 string_t getFileName(int n) {

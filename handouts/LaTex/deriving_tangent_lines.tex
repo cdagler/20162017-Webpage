@@ -1,0 +1,119 @@
+\documentclass[letterpaper]{article}
+
+\pagenumbering{gobble}
+\usepackage[margin=1.5cm]{geometry} 
+\usepackage{amsmath}
+\usepackage{wrapfig}
+
+\setlength{\parindent}{0cm}
+
+\newcounter{num}
+
+\begin{document}
+
+\Large
+
+\begin{center}
+	\textbf{Deriving the equation for the tangent lines}
+\end{center}
+
+\large
+
+Below shows how I derived the functions that generate the tangent lines for the programs {\tt sinTangents.ch}, {\tt prabTangents.ch}, {\tt tanTangents.ch}, {\tt expTangents.ch}, and {\tt lnTangents.ch}. Each of these programs generate several images that can be merged together to create an animation for the tangent lines of these functions. All of the code and animations can be found at {\tt www.mrdagler.com/tangent\_lines.html}
+
+\bigskip
+\bigskip
+
+
+\textbf{$\bullet$ Tangent lines of} $\boldsymbol{f(x)=\sin(x)}$ \\
+
+Find the equation of the tangle lines for $f(x)=\sin(x)$ at the point $(i,\sin(i))$. \\[.1cm]
+
+Since $f'(x)=\cos(x)$, we know that the slope of the tangent lines is give my $m=\cos(i)$. 
+
+\[ \begin{array}{*{7}c}
+	y & - & y_1 & = & m(x & - & x_1 )  \\[0.1cm]
+	y & - & \sin(i) & = & \cos(i)(x & - & i )  \\[0.1cm]
+	y & - & \sin(i) & = & \cos(i)x & - & \cos(i)i \\[0.3cm] 
+	\multicolumn{7}{c}{
+		\boxed{\boldsymbol{y=\cos(i)x-\cos(i)i+\sin(i)}}
+	} \\ 
+\end{array} \]
+
+\bigskip
+\bigskip
+
+\textbf{$\bullet$ Tangent lines of} $\boldsymbol{f(x)=x^2}$ \\
+
+Find the equation of the tangle lines for $f(x)=x^2$ at the point $(i,i^2)$. \\[.1cm]
+
+Since $f'(x)=2x$, we know that the slope of the tangent lines is give my $m=2i$. 
+
+\[ \begin{array}{*{7}c}
+	y & - & y_1 & = & m(x & - & x_1 )  \\[0.1cm]
+	y & - & i^2 & = & 2i(x & - & i )  \\[0.1cm]
+	y & - & i^2 & = & 2ix & - & 2i^2  \\[0.3cm] 
+	\multicolumn{7}{c}{
+		\boxed{\boldsymbol{y=2ix-i^2}}
+	}	
+\end{array} \]
+
+\bigskip
+\bigskip
+
+\textbf{$\bullet$ Tangent lines of} $\boldsymbol{f(x)=\tan(x)}$ \\
+
+Find the equation of the tangle lines for $f(x)=\tan(x)$ at the point $(i,\tan(i))$. \\[.1cm]
+
+Since $f'(x)=\sec^2(x)$, we know that the slope of the tangent lines is give my $m=\sec^2(i)$. 
+\[ \begin{array}{*{7}c}
+	y & - & y_1 & = & m(x & - & x_1 )  \\[0.1cm]
+	y & - & \tan(i) & = & \sec^2(i)(x & - & i )  \\[0.1cm]
+	y & - & \tan(i) & = & \sec^2(i)x & - & \sec^2(i)i \\[0.3cm]
+	\multicolumn{7}{c}{
+		\boxed{\boldsymbol{y=\sec^2(i)x-\sec^2(i)i+\tan(i)}}
+	} \\[0.3cm] 
+	\multicolumn{7}{c}{\mbox{or}} \\[0.2cm] 
+	\multicolumn{7}{c}{
+		\boxed{\boldsymbol{y=\dfrac{x}{\cos^2(i)}-\dfrac{i}{\cos^2(i)}+\tan(i)}}
+	} \\[0.1cm] 		
+\end{array} \]
+
+
+\newpage
+
+\textbf{$\bullet$ Tangent lines of} $\boldsymbol{f(x)=e^x}$ \\
+
+Find the equation of the tangle lines for $f(x)=e^x$ at the point $(i,e^i)$. \\[.1cm]
+
+Since $f'(x)=e^x$, we know that the slope of the tangent lines is give my $m=e^i$. 
+
+\[ \begin{array}{*{7}c}
+	y & - & y_1 & = & m(x & - & x_1 )  \\[0.1cm]
+	y & - & e^i & = & e^i(x & - & i )  \\[0.1cm]
+	y & - & e^i & = & e^ix & - & e^ii  \\[0.5cm]
+	\multicolumn{7}{c}{
+		\boxed{\boldsymbol{y=e^ix-e^ii+e^i}}
+	}
+\end{array} \]
+
+\bigskip
+\bigskip
+
+\textbf{$\bullet$ Tangent lines of} $\boldsymbol{f(x)=\ln(x)}$ \\
+
+Find the equation of the tangle lines for $f(x)=\ln(x)$ at the point $(i,\ln(i))$. \\[.1cm]
+
+Since $f'(x)=\dfrac{1}{x}$, we know that the slope of the tangent lines is give my $m=\dfrac{1}{i}$. 
+
+\[ \begin{array}{*{7}c}
+	y & - & y_1 & = & m(x & - & x_1 )  \\[0.1cm]
+	y & - & \ln(i) & = & \dfrac{1}{i}(x & - & i )  \\[0.3cm]
+	y & - & \ln(i) & = & \dfrac{x}{i} & - & 1  \\[0.3cm] 
+	\multicolumn{7}{c}{
+		\boxed{\boldsymbol{y=\dfrac{x}{i}-1+\ln(i)}}
+	}
+\end{array} \]
+
+
+\end{document}

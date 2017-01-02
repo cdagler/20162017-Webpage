@@ -1,7 +1,7 @@
 /* File Name: lnTangents.ch
  *
- * This program displays the graph [y=ln(x)] defined by
- * its tangent lines.
+ * This program generates several images that can be merged together 
+ * to create an animation that displays the tangent lines of y=ln(x).
  *
  * Name: Clay Dagler: Clayton-Dagler@scusd.edu
  */
@@ -12,11 +12,11 @@
 static double i;
 
 /*
- * Note: This function was found by finding the tangent 
- * lines of ln(x) by hand and discovering a pattern.
+ * The file deriving_tangent_lines.pdf shows how this function was
+ * created.
  */
 double tangentLine(double x){
-    return 1.0/i * x+log(i)-1;
+    return x/i-1+log(i);
 }   
 
 string_t getFileName(int n) {

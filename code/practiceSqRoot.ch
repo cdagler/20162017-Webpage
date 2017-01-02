@@ -1,6 +1,6 @@
 /* File:    practiceSqroot.ch 
- * Purpose: This program provides pratice for nth roots.
- * Author:  Clay Dagler (cdagler@yahoo.com)
+ * Purpose: This program provides pratice for square roots.
+ * Author:  Clay Dagler (Clayton-Dagler@scusd.edu)
  */
 
 /*
